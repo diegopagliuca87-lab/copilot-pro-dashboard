@@ -1,6 +1,8 @@
 # copilot-pro-dashboard
 A polished Next.js dashboard demonstrating modern frontend, TypeScript, and Copilot-assisted engineering.
 
+**Live:** https://copilot-pro-dashboard.vercel.app
+
 ## Features
 
 - **Overview**: stat cards, a weekly commit chart, and recent activity
@@ -58,7 +60,7 @@ src/
 - [x] Load live data from the GitHub API
 - [x] Loading and error states
 - [ ] Automatic checks on every push (CI)
-- [ ] Deploy (e.g. Vercel) and add the live link here
+- [x] Deploy on Vercel (every push to `main` deploys automatically)
 - [ ] Screenshots
 
 ## License
