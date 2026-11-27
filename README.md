@@ -9,7 +9,17 @@ A polished Next.js dashboard demonstrating modern frontend, TypeScript, and Copi
 - **Copilot**: how GitHub Copilot contributed to building this dashboard
 - Responsive layout (desktop sidebar, mobile top navigation) and automatic dark mode
 
-The data is currently sample data from `src/lib/data.ts`. Live GitHub data is the next step.
+Projects, stats, the commit chart, and activity come **live from the GitHub API** (cached for a few minutes).
+The Copilot page uses sample values, because GitHub only offers Copilot metrics for organizations.
+
+### Configuration (optional)
+
+| Variable | Purpose |
+|---|---|
+| `GITHUB_USERNAME` | Whose data to show (default: `diegopagliuca87-lab`) |
+| `GITHUB_TOKEN` | Higher API rate limit and your private repositories. Set it in `.env.local` or your host's settings, never commit it. |
+
+Without a token the dashboard shows public data only (60 GitHub requests per hour).
 
 ## Tech stack
 
@@ -28,6 +38,7 @@ Then open http://localhost:3000.
 
 ```bash
 npm run lint    # check code style
+npm test        # unit tests (vitest)
 npm run build   # production build
 ```
 
@@ -37,13 +48,15 @@ npm run build   # production build
 src/
   app/            pages (overview, projekte, aktivitaet, copilot) and layout
   components/     sidebar, cards, chart, activity list
-  lib/data.ts     sample data and types
+  lib/data.ts               shared types and Copilot sample values
+  lib/github.ts             loads live data from the GitHub API (cached)
+  lib/github-transform.ts   turns API responses into dashboard data (unit tested)
 ```
 
 ## Roadmap
 
-- [ ] Load live data from the GitHub API
-- [ ] Loading and error states
+- [x] Load live data from the GitHub API
+- [x] Loading and error states
 - [ ] Automatic checks on every push (CI)
 - [ ] Deploy (e.g. Vercel) and add the live link here
 - [ ] Screenshots

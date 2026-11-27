@@ -6,7 +6,7 @@ const numberFormat = new Intl.NumberFormat("de-DE");
 export default function CopilotPage() {
   return (
     <>
-      <PageHeader title="Copilot" subtitle="Wie GitHub Copilot beim Bau dieses Dashboards geholfen hat" />
+      <PageHeader title="Copilot" subtitle="Wie GitHub Copilot beim Bau dieses Dashboards geholfen hat (Beispielwerte)" />
 
       <div className="grid gap-4 sm:grid-cols-3">
         {copilotStats.map((s) => (

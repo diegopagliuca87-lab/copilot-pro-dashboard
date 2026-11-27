@@ -1,10 +1,34 @@
-import { Badge, Card, PageHeader } from "@/components/ui";
-import { repos } from "@/lib/data";
+import { Badge, Card, EmptyState, ErrorCard, PageHeader } from "@/components/ui";
+import { getDashboardData } from "@/lib/github";
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const result = await getDashboardData();
+  const header = <PageHeader title="Projekte" subtitle="Alle Repositories mit Sprache, Sternen und letzter Änderung" />;
+
+  if (!result.ok) {
+    return (
+      <>
+        {header}
+        <ErrorCard message={result.error} />
+      </>
+    );
+  }
+
+  const { repos } = result.data;
+  if (repos.length === 0) {
+    return (
+      <>
+        {header}
+        <Card>
+          <EmptyState>Noch keine eigenen Projekte gefunden.</EmptyState>
+        </Card>
+      </>
+    );
+  }
+
   return (
     <>
-      <PageHeader title="Projekte" subtitle="Alle Repositories mit Sprache, Sternen und letzter Änderung" />
+      {header}
       <Card className="overflow-x-auto p-0">
         <table className="w-full min-w-[640px] text-left text-sm">
           <thead className="border-b border-border text-xs text-muted">

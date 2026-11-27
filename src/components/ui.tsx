@@ -36,6 +36,19 @@ export function StatCard({ stat }: { stat: Stat }) {
   );
 }
 
+export function ErrorCard({ message }: { message: string }) {
+  return (
+    <div role="alert" className="rounded-xl border border-negative/40 bg-surface p-5 text-sm">
+      <p className="font-medium text-negative">Daten konnten nicht geladen werden</p>
+      <p className="mt-1 text-muted">{message}</p>
+    </div>
+  );
+}
+
+export function EmptyState({ children }: { children: ReactNode }) {
+  return <p className="text-sm text-muted">{children}</p>;
+}
+
 export function Badge({ children }: { children: ReactNode }) {
   return (
     <span className="rounded-full border border-border bg-surface-muted px-2 py-0.5 text-xs text-muted">
